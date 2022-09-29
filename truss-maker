@@ -1,0 +1,139 @@
+dx = 0;
+limx = 0;
+cout = 0;
+boolean = 1;
+it = 1;
+it2 = 1;
+num = input('how many segmants do you want: ');
+n = num;
+segmants = num+2;
+iterations = segmants/5;
+node = zeros(fix((segmants/2)-1),2);
+seg = zeros(num,4);
+figure('Name','Warren Truss','NumberTitle','off')
+while boolean ~= 3
+  
+   if n>=5 & boolean == 1
+%%plots the up one
+plot([dx (dx+0.5)],[0 0.75],'r','LineWidth',1); % plots rod
+hold on;
+seg(it2,1) = dx;
+seg(it2,2) = 0;
+seg(it2,3) = dx+0.5;
+seg(it2,4) = 0.75;
+it2 = it2+1;
+plot(dx,0,'Marker','o','MarkerSize',10,'MarkerEdgeColor','r'); % plots bob
+hold on;
+node(it,1) = dx;
+node(it,2) = 0;
+it = it +1;
+%%plot the way down
+n = n-1;
+plot([(dx+0.5) dx+1],[0.75 0],'r','LineWidth',1); % plots rod
+hold on;
+ seg(it2,1) = dx+0.5;
+seg(it2,2) = 0.75;
+seg(it2,3) = dx+1;
+seg(it2,4) = 0;
+it2 = it2+1;
+plot(dx+0.5,0.75,'Marker','o','MarkerSize',10,'MarkerEdgeColor','r'); % plots bob
+hold on;
+plot(dx+1,0,'Marker','o','MarkerSize',10,'MarkerEdgeColor','r'); % plots bob
+hold on;
+n = n-1;
+node(it,1) = dx+0.5;
+node(it,2) = 0.75;
+it = it + 1;
+%%plots the bottom rod
+plot([dx dx+0.5],[0 0],'r','LineWidth',1); % plots 1/2 rod
+  seg(it2,1) = dx;
+seg(it2,2) = 0;
+seg(it2,3) = dx+0.5;
+seg(it2,4) = 0;
+it2 = it2+1;
+plot([dx+0.5 dx+1],[0 0],'r','LineWidth',1); % plots 1/2 rod
+n = n-1;
+seg(it2,1) = dx+0.5;
+seg(it2,2) = 0;
+seg(it2,3) = dx+1;
+seg(it2,4) = 0;
+it2 = it2+1;
+n=n-1;
+%%plots the middle rod
+plot([dx+0.5 dx+0.5],[0.75 0],'r','LineWidth',1); % plots rod
+hold on;
+n = n-1;
+ seg(it2,1) = dx+0.5;
+seg(it2,2) = 0.75;
+seg(it2,3) = dx+0.5;
+seg(it2,4) = 0;
+it2 = it2+1;
+boolean = 0;
+plot(dx+0.5,0,'Marker','o','MarkerSize',10,'MarkerEdgeColor','r'); % plots bob
+hold on;
+node(it,1) = dx+0.5;
+node(it,2) = 0;
+it = it +1;
+x = [num2str(n), ' hey '];
+xlim([(0-1) (num/6+1)]);
+    ylim([-0.5 1.5]);
+   end
+ if n>=7 
+ %%plots the top rod
+     plot([dx+0.5 dx+1],[0.75 0.75],'r','LineWidth',1); % plots 1/2 rod
+n = n-1;
+hold on;
+  seg(it2,1) = dx+0.5;
+seg(it2,2) = 0.75;
+seg(it2,3) = dx+1;
+seg(it2,4) = 0.75;
+it2 = it2 +1;
+plot([dx+1 dx+1.5],[0.75 0.75],'r','LineWidth',1); % plots 1/2 rod
+seg(it2,1) = dx+1;
+seg(it2,2) = 0.75;
+seg(it2,3) = dx+1.5;
+seg(it2,4) = 0.75;
+it2 = it2+1;
+n = n-1;
+%plots the middle rod
+plot([dx+1 dx+1],[0.75 0],'r','LineWidth',1); % plots rod
+hold on;
+n = n-1;
+ seg(it2,1) = dx+1;
+seg(it2,2) = 0.75;
+seg(it2,3) = dx+1;
+seg(it2,4) = 0;
+it2 = it2+1;
+boolean = 0;
+plot(dx+1,0.75,'Marker','o','MarkerSize',10,'MarkerEdgeColor','r'); % plots bob
+hold on;
+node(it,1) = dx+1;
+node(it,2) = 0.75;
+it = it +1;
+boolean = 1;
+xlim([(0-1) (num/6+1)]);
+    ylim([-0.5 1.5]);
+ end
+ 
+if n < 7 && n~=0 && boolean<10
+   
+    statment = [' This will not create an equal Warrent truss'];
+    statment2 = ['The Warren truss for ',num2str(num-n),' segmants is shown'];
+    statment3 = [' There is ', num2str(n),' segmants left over'];
+node(it,1) = dx+1;
+node(it,2) = 0;  %%saves the last node in the diagram
+it = it+1;
+    disp(statment);
+    disp(statment2);
+    disp(statment3);
+    disp ' ERROR '
+    boolean = 3;
+end
+if n == 0 & boolean<10
+    boolean = 3;
+    node(it,1) = dx+1;%%saves the last node in the diagram
+node(it,2) = 0;
+it = it+1;
+end
+dx = dx+1;
+end
